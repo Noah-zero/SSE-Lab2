@@ -16,8 +16,9 @@ def hello_world():
     return render_template("index.html")
 
 
-@app.route("/get", methods=["GET"])
-def process_query(query):
+@app.route("/query", methods=["GET"])
+def process_query():
+    query = request.args.get("q")
     if query == "dinosaurs":
         return "Dinosaurs ruled the Earth 200 million years ago"
     else:
