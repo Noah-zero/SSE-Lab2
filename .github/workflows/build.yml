@@ -20,6 +20,12 @@ jobs:
       - name: Run flake8
         run: flake8 .
 
+      - name Install pytest
+      	run: pytest
+
+      - name: Run pytest
+      	run: pytest .
+
   deploy-to-impaas:
     needs: python-formatting
     runs-on: ubuntu-latest
