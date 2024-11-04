@@ -28,3 +28,8 @@ def process_query(q):
 def submitgetgithubusername():
     input_name = request.form.get("name")
     return render_template("github_username.html", name=input_name)
+
+
+@app.route("/get_github_username", methods=["POST"])
+def get_github_username():
+    return render_template("get_github_username.html")
