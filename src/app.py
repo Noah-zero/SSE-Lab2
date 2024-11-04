@@ -22,3 +22,9 @@ def process_query(q):
         return "Dinosaurs ruled the Earth 200 million years ago"
     else:
         return "Unknown"
+
+
+@app.route("/submitgetgithubusername", methods=["POST"])
+def submit():
+    input_name = request.form.get("name")
+    return render_template("github_username.html", name=input_name)
