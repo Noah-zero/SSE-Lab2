@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import requests as re
 
 
 app = Flask(__name__)
@@ -27,9 +28,15 @@ def process_query(q):
 @app.route("/submitgetgithubusername", methods=["POST"])
 def submitgetgithubusername():
     input_name = request.form.get("name")
+    response = re.get("https://api.github.com/users/{}/repos".format(input_name))
+    if response.status_code == 200:
+        repos = response.json()  # data returned is a list of ‘repository’ entities
+        for repo in repos:
+            print(repo["full_name"])
     return render_template("github_username.html", name=input_name)
 
 
-@app.route("/get_github_username", methods=["POST"])
+
+@app.route("/get_github_username", methods=["GET"])
 def get_github_username():
     return render_template("get_github_username.html")
