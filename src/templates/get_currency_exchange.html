@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SSE-lab5</title>
+</head>
+<body>
+    <h1>This is latest currency exchange of EUR</h1>
+    <ul>
+        <p> {{ data.dates }} </p>
+        {% for key, value in data.rates.items() %}
+        <li>
+            <p> {{ key }} </p>
+            <p> {{ value }} </p>
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
