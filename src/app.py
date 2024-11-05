@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 import requests as re
-import os
 
 
 app = Flask(__name__)
@@ -30,7 +29,9 @@ def process_query(q):
 def submitgetgithubusername():
     data = []
     input_name = request.form.get("name")
-    response = re.get("https://api.github.com/users/{}/repos".format(input_name))
+    base_url = "https://api.github.com/users"
+    user_repos_url = f"{base_url}/{input_name}/repos"
+    response = re.get(user_repos_url)
     url = "https://api.github.com/repos/{}/{}/commits"
     if response.status_code == 200:
         for repo in response.json():
@@ -44,7 +45,7 @@ def submitgetgithubusername():
                     temp['Author'] = commit['commit']['author']['name']
                     temp['Date'] = commit['commit']['author']['date']
                     temp['Message'] = commit['commit']['message']
-                except:
+                except Exception:
                     continue
                 data.append(temp)
     return render_template("github_username.html", name=input_name, data=data)
