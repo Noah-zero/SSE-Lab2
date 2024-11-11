@@ -17,13 +17,16 @@ def hello_world():
     return render_template("index.html")
 
 
-@app.route("/query", methods=["GET"])
-def query():
-    query = request.args.get("q")
+def process_query(query):
     if query == "dinosaurs":
         return "Dinosaurs ruled the Earth 200 million years ago"
     else:
         return "Unknown"
+
+@app.route("/query", methods=["GET"])
+def query():
+    query = request.args.get("q")
+    return process_query(query)
 
 
 @app.route("/submitgetgithubusername", methods=["POST"])
