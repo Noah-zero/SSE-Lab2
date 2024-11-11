@@ -8,3 +8,6 @@ def test_knows_about_dinosaurs():
 
 def test_does_not_know_about_asteroids():
     assert process_query("asteroids") == "Unknown"
+
+def my_name_is():
+    assert process_query("")
