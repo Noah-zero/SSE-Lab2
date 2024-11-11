@@ -18,7 +18,8 @@ def hello_world():
 
 
 @app.route("/query", methods=["GET"])
-def process_query(q):
+def query():
+    q = request.args.get("query")
     if q == "dinosaurs":
         return "Dinosaurs ruled the Earth 200 million years ago"
     else:
